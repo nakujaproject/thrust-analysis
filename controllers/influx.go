@@ -9,7 +9,7 @@ import (
 
 //InitializeInfluxDb and set up write api
 func InitializeInfluxDb() (api.WriteAPI, influxdb2.Client) {
-	const token = "cGw69KfelV-nDOGiZ5Gd_IN-B3WZKhQ7Km0zpTn1faLnDYirsGm3Z7sBxD_gBWq1uxUydRMQm1wML5Tnal8hQg=="
+	const token = "ueMfgaSGng-SPr6UXBdIgw8zaOd5UXrl9xqNEDz-YCM0Xlz4WTyIo4Rvp8WUp1riNvoJAZofVoMZ5LCPmFYHwQ=="
 	const bucket = "test-stand"
 	const org = "nakuja"
 	clientInflux := influxdb2.NewClientWithOptions("http://localhost:8086", token,

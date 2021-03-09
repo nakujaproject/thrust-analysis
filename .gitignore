@@ -138,3 +138,17 @@ dmypy.json
 cython_debug/
 
 .history
+
+influxdb/
+
+grafana/
+
+grafana-datasource.yaml/
+
+grafana-provisioning/
+
+samples/
+
+credentials.json
+
+token.json
