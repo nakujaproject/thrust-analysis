@@ -47,7 +47,7 @@ while True:
             f = open(filename, "a")
             print("File Created")
         elif (presses == 2):
-            f.write(val + "\n")
+            f.write(str(val) + "\n")
         elif (presses > 2):
             f.close()
 
