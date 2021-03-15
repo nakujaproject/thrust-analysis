@@ -45,18 +45,16 @@ func main() {
 	var influxClient influxdb2.Client
 	writeAPI, influxClient = controllers.InitializeInfluxDb()
 
-	c := &serial.Config{Name: "COM5", Baud: 9600}
+	c := &serial.Config{Name: "COM10", Baud: 9600}
 	s, err := serial.OpenPort(c)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	//n, err := s.Write([]byte("test"))
+	_, err = s.Write([]byte("1"))
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	//
 
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, os.Interrupt)
