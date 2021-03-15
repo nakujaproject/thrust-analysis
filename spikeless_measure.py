@@ -26,6 +26,8 @@ def Calibration(scale):
     return mean(readings)/refWeight
 
 filename = datetime.now().strftime("%A %d %B %Y %I-%M%p") + ".csv"
+f = open(filename, "a")
+print("File Created")
 
 scale = Scale()
 
@@ -43,12 +45,9 @@ while True:
         if (GPIO.input(18) == False):
             presses = presses + 1
         print("{0: 4.4f}".format(val))
-        if(presses == 1):
-            f = open(filename, "a")
-            print("File Created")
-        elif (presses == 2):
+        if (presses == 1):
             f.write(str(val) + "\n")
-        elif (presses > 2):
+        elif (presses > 1):
             f.close()
 
     except (KeyboardInterrupt, SystemExit):
