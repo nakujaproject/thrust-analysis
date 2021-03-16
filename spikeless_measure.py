@@ -6,9 +6,18 @@ import time
 from statistics import mean
 from datetime import datetime
 from drive import uploadToDrive
+import liveplt
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+# Create figure for plotting
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+xs = []
+ys = []
 
 def Calibration(scale):
     readings = []
@@ -30,6 +39,7 @@ filename = datetime.now().strftime("%A %d %B %Y %I-%M%p") + ".csv"
 f = open(filename, "a")
 print("File Created")
 
+
 scale = Scale()
 
 scale.setReferenceUnit(1)
@@ -38,18 +48,14 @@ scale.reset()
 scale.tare()
 
 scale.setReferenceUnit(Calibration(scale))
-presses = 0
+
 while True:
 
     try:
-        val = scale.getMeasure()
-        if (GPIO.input(18) == False):
-            presses = presses + 1
-        print("{0: 4.4f}".format(val))
-        if (presses == 1):
-            f.write(str(val) + "\n")
-        elif (presses > 1):
-            f.close()
+        # Set up plot to call animate() function periodically
+        ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, scale, f), interval=1000)
+        plt.show()
+        
 
     except (KeyboardInterrupt, SystemExit):
         f.close()
