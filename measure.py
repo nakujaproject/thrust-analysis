@@ -6,6 +6,8 @@ from datetime import datetime
 import RPi.GPIO as GPIO
 from hx711 import HX711
 
+from drive import uploadToDrive
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -54,5 +56,6 @@ while True:
 
     except (KeyboardInterrupt, SystemExit):
         f.close()
+        uploadToDrive(filename)
         GPIO.cleanup()
         sys.exit()

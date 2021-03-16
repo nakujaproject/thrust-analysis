@@ -5,6 +5,7 @@ from scale import Scale
 import time
 from statistics import mean
 from datetime import datetime
+from drive import uploadToDrive
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -52,5 +53,6 @@ while True:
 
     except (KeyboardInterrupt, SystemExit):
         f.close()
+        uploadToDrive(filename)
         GPIO.cleanup()
         sys.exit()
