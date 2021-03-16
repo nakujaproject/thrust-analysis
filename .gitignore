@@ -153,6 +153,6 @@ credentials.json
 
 token.json
 
-settings.json
+settings.yaml
 
 client_secrets.json
