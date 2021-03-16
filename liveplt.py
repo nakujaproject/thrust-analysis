@@ -4,8 +4,8 @@ import matplotlib.animation as animation
 import RPi.GPIO as GPIO
 
 presses = 0
-#GPIO.setmode(GPIO.BCM)
-#GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def writeFile(val, f):
     global presses
