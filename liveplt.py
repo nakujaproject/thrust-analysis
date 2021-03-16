@@ -9,7 +9,8 @@ def writeFile(val, f):
     global presses
     if (GPIO.input(18) == False):
             presses = presses + 1
-    print("{0: 4.4f}".format(val))
+    #print("{0: 4.4f}".format(val))
+    print(presses)
     if (presses == 1):
         f.write(str(val) + "\n")
     elif (presses > 1):

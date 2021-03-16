@@ -61,4 +61,5 @@ while True:
         f.close()
         uploadToDrive(filename)
         GPIO.cleanup()
+        print("Done")
         sys.exit()
