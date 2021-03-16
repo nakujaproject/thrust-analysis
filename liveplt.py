@@ -4,11 +4,14 @@ import matplotlib.animation as animation
 import RPi.GPIO as GPIO
 
 presses = 0
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def writeFile(val, f):
     global presses
     if (GPIO.input(18) == False):
             presses = presses + 1
+            print("pressed")
     #print("{0: 4.4f}".format(val))
     print(presses)
     if (presses == 1):
