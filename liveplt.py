@@ -11,13 +11,13 @@ def writeFile(val, f):
     global presses
     if (GPIO.input(18) == False):
         presses = presses + 1
-        print("pressed")
     #print("{0: 4.4f}".format(val))
-    #print(presses)
     if (presses == 1):
         f.write(str(val) + "\n")
+        print("Recording Data")
     elif (presses > 1):
         f.close()
+        print("Recording stopped")
 
 # This function is called periodically from FuncAnimation
 def animate(i, xs, ys, ax, scale, f):

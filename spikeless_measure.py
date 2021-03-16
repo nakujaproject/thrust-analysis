@@ -53,7 +53,7 @@ while True:
 
     try:
         # Set up plot to call animate() function periodically
-        ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, scale, f), interval=1000)
+        ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, scale, f), interval=100)
         plt.show()
         
 
