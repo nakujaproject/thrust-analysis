@@ -7,6 +7,10 @@ What the program does:
 - Display a live graph of the data
 
 ## Usage
+
+## Circuit
+
+
 ### Install requirements:
 `pip install -r requirements.txt`
 
