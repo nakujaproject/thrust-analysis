@@ -9,7 +9,7 @@ What the program does:
 ## Usage
 
 ## Circuit
-
+![Circuit image](https://github.com/nakujaproject/thrust-analysis/blob/main/test-stand/circuit.png)
 
 ### Install requirements:
 `pip install -r requirements.txt`
