@@ -8,8 +8,16 @@ from hx711 import HX711
 
 from drive import uploadToDrive
 
+import liveplt
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+# Create figure for plotting
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+xs = []
+ys = []
 
 def Calibration(hx):
     readings = []
@@ -39,23 +47,19 @@ hx.setReferenceUnit(1)
 hx.reset()
 hx.tare()
 
+
 hx.setReferenceUnit(Calibration(hx))
 
-presses = 0
 while True:
 
     try:
-        val = hx.getWeight()
-        if (GPIO.input(18) == False):
-            presses = presses + 1
-        print("{0: 4.4f}".format(val))
-        if (presses == 1):
-            f.write(str(val) + "\n")
-        elif (presses > 1):
-            f.close()
+        # Set up plot to call animate() function periodically
+        ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, hx, f), interval=100)
+        plt.show()
 
     except (KeyboardInterrupt, SystemExit):
         f.close()
         uploadToDrive(filename)
         GPIO.cleanup()
+        print("Done")
         sys.exit()

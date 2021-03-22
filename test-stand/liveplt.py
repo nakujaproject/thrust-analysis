@@ -20,11 +20,12 @@ def writeFile(val, f):
         print("Recording stopped")
 
 # This function is called periodically from FuncAnimation
-def animate(i, xs, ys, ax, scale, f):
+def animate(i, xs, ys, ax, hx, f):
 
     # Add x and y to lists
     xs.append(dt.datetime.now().strftime('%S.%f'))
-    thrust = scale.getMeasure()
+    #thrust = scale.getMeasure()
+    thrust = hx.getWeight()
     writeFile(thrust, f)
     ys.append(thrust)
 
