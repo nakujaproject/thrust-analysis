@@ -9,6 +9,8 @@ from hx711 import HX711
 from drive import uploadToDrive
 
 import liveplt
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
