@@ -52,16 +52,14 @@ hx.tare()
 
 hx.setReferenceUnit(Calibration(hx))
 
-while True:
+    
+# Set up plot to call animate() function periodically
+ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, hx, f), interval=100)
+plt.show()
 
-    try:
-        # Set up plot to call animate() function periodically
-        ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, hx, f), interval=100)
-        plt.show()
 
-    except (KeyboardInterrupt, SystemExit):
-        f.close()
-        uploadToDrive(filename)
-        GPIO.cleanup()
-        print("Done")
-        sys.exit()
+f.close()
+uploadToDrive(filename)
+GPIO.cleanup()
+print("Done")
+sys.exit()
