@@ -59,7 +59,6 @@ class MyDataFetchClass(threading.Thread):
             val = self._hx.getWeight()
             self._dataClass.YData.append(val)
             allPoints.append(val)
-            self._f.write(str(val) + "\n")
             # sleep until next execution
             #self._nextCall = self._nextCall + self._period;
             #time.sleep(self._nextCall - time.time())
