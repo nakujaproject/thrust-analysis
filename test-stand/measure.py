@@ -8,18 +8,13 @@ from hx711 import HX711
 
 from drive import uploadToDrive
 
-import liveplt
+import threadedPlot as plts
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+
+import os
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-# Create figure for plotting
-fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1)
-xs = []
-ys = []
 
 def Calibration(hx):
     readings = []
@@ -52,14 +47,26 @@ hx.tare()
 
 hx.setReferenceUnit(Calibration(hx))
 
-    
-# Set up plot to call animate() function periodically
-ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, hx, f), interval=1)
-plt.show()
+#show sample readings
+for _ in range(20):
+    print(hx.getWeight())
 
+qs = input("Continue with readings: (y/n)")
+if (qs == "y"):
+    # get, display and write data
+    data = plts.MyDataClass()
+    plotter = plts.MyPlotClass(data)
+    fetcher = plts.MyDataFetchClass(data, hx, f)
 
-f.close()
-uploadToDrive(filename)
+    fetcher.start()
+    plt.show()
+
+    f.close()
+    uploadToDrive(filename)
+else:
+    os.remove(filename)
+    print("file deleted")
+
 GPIO.cleanup()
 print("Done")
 sys.exit()
