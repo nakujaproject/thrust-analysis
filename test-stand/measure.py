@@ -54,7 +54,7 @@ hx.setReferenceUnit(Calibration(hx))
 
     
 # Set up plot to call animate() function periodically
-ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, hx, f), interval=100)
+ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, hx, f), interval=1)
 plt.show()
 
 
