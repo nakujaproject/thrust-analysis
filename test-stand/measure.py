@@ -25,7 +25,7 @@ def Calibration(hx):
     readings = []
     print("Load Reference weight")
     time.sleep(2)
-    print("Calibating")
+    print("Calibrating")
     for _ in range(5):
         print(".")
         readings.append(hx.getWeight())

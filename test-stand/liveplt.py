@@ -26,6 +26,7 @@ def animate(i, xs, ys, ax, hx, f):
     xs.append(dt.datetime.now().strftime('%S.%f'))
     #thrust = scale.getMeasure()
     thrust = hx.getWeight()
+    print(dt.datetime.now().strftime('%S.%f'))
     writeFile(thrust, f)
     ys.append(thrust)
 
