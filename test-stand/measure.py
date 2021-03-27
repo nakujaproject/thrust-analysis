@@ -8,24 +8,19 @@ from hx711 import HX711
 
 from drive import uploadToDrive
 
-import liveplt
+import threadedPlot as plts
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+
+import os
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-# Create figure for plotting
-fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1)
-xs = []
-ys = []
 
 def Calibration(hx):
     readings = []
     print("Load Reference weight")
     time.sleep(2)
-    print("Calibating")
+    print("Calibrating")
     for _ in range(5):
         print(".")
         readings.append(hx.getWeight())
@@ -38,8 +33,8 @@ def Calibration(hx):
     return mean(readings)/refWeight
 
 filename = datetime.now().strftime("%A %d %B %Y %I-%M%p") + ".csv"
-f = open(filename, "a")
-print("File Created")
+#f = open(filename, "a")
+#print("File Created")
 
 # choose pins on rpi (BCM5 and BCM6)
 hx = HX711(dout=5, pd_sck=6)
@@ -52,14 +47,27 @@ hx.tare()
 
 hx.setReferenceUnit(Calibration(hx))
 
-    
-# Set up plot to call animate() function periodically
-ani = animation.FuncAnimation(fig, liveplt.animate, fargs=(xs, ys, ax, hx, f), interval=100)
-plt.show()
+#show sample readings
+for _ in range(20):
+    print(hx.getWeight())
 
+qs = input("Continue with readings: (y/n)")
+if (qs == "y"):
+    # get, display and write data
+    data = plts.MyDataClass()
+    plotter = plts.MyPlotClass(data)
+    fetcher = plts.MyDataFetchClass(data, hx, filename)
 
-f.close()
-uploadToDrive(filename)
+    fetcher.start()
+    plt.show()
+
+    #f.close()
+    uploadToDrive(filename)
+else:
+    #f.close()
+    os.remove(filename)
+    print("file deleted")
+
 GPIO.cleanup()
 print("Done")
 sys.exit()
