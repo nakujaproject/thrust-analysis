@@ -64,6 +64,6 @@ class MyDataFetchClass(threading.Thread):
             #time.sleep(self._nextCall - time.time())
             time.sleep(self._period)
 
-        np.savetxt(self._filename, a, newline=" ")
+        np.savetxt(self._filename, allPoints, newline=" ")
 
 #fetcher.join()
