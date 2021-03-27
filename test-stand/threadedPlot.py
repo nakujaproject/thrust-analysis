@@ -63,7 +63,7 @@ class MyDataFetchClass(threading.Thread):
             # sleep until next execution
             #self._nextCall = self._nextCall + self._period;
             #time.sleep(self._nextCall - time.time())
-            time.sleep(self._period)
+            #time.sleep(self._period)
 
         np.savetxt(self._filename, allPoints, newline=" ")
 
