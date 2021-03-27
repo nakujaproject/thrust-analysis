@@ -33,8 +33,8 @@ def Calibration(hx):
     return mean(readings)/refWeight
 
 filename = datetime.now().strftime("%A %d %B %Y %I-%M%p") + ".csv"
-f = open(filename, "a")
-print("File Created")
+#f = open(filename, "a")
+#print("File Created")
 
 # choose pins on rpi (BCM5 and BCM6)
 hx = HX711(dout=5, pd_sck=6)
@@ -56,14 +56,15 @@ if (qs == "y"):
     # get, display and write data
     data = plts.MyDataClass()
     plotter = plts.MyPlotClass(data)
-    fetcher = plts.MyDataFetchClass(data, hx, f)
+    fetcher = plts.MyDataFetchClass(data, hx, filename)
 
     fetcher.start()
     plt.show()
 
-    f.close()
+    #f.close()
     uploadToDrive(filename)
 else:
+    #f.close()
     os.remove(filename)
     print("file deleted")
 

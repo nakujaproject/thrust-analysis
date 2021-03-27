@@ -39,28 +39,32 @@ class MyPlotClass():
 
 class MyDataFetchClass(threading.Thread):
 
-    def __init__(self, dataClass, hx, f):
+    def __init__(self, dataClass, hx, filename):
 
         threading.Thread.__init__(self)
 
         self._dataClass = dataClass
         self._period = 0.0125
         self._hx = hx
-        self._f = f
+        self._filename = filename
         #self._nextCall = time.time()
 
 
     def run(self):
+        allPoints = []
         while (GPIO.input(18) == True):
             print("updating data")
             # add data to data class
             self._dataClass.XData.append(self._dataClass.XData[-1] + 1)
             val = self._hx.getWeight()
             self._dataClass.YData.append(val)
+            allPoints.append(val)
             self._f.write(str(val) + "\n")
             # sleep until next execution
             #self._nextCall = self._nextCall + self._period;
             #time.sleep(self._nextCall - time.time())
             time.sleep(self._period)
+
+        np.savetxt(self._filename, a, newline=" ")
 
 #fetcher.join()
