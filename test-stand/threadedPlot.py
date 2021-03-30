@@ -53,8 +53,8 @@ class MyDataFetchClass(threading.Thread):
     def run(self):
         allPoints = []
         while (GPIO.input(18) == True):
-            #print("updating data")
-            print(dt.datetime.now().strftime('%S.%f'))
+            print("updating data")
+            #print(dt.datetime.now().strftime('%S.%f'))
             # add data to data class
             self._dataClass.XData.append(self._dataClass.XData[-1] + 1)
             val = self._hx.getWeight()
