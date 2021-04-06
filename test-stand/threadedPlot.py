@@ -25,7 +25,7 @@ class MyPlotClass():
 
         self.hLine, = plt.plot(0, 0)
 
-        self.ani = FuncAnimation(plt.gcf(), self.run, interval = 2000, repeat=False)
+        self.ani = FuncAnimation(plt.gcf(), self.run, interval = 500, repeat=False)
 
 
     def run(self, i):  

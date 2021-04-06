@@ -6,7 +6,7 @@ def uploadToDrive(filename):
     gauth.LocalWebserverAuth()          
     drive = GoogleDrive(gauth)  
 
-    gfile = drive.CreateFile({'parents': [{'id': '1Cp_PTI2zgyUtxkU_rm3zBI9VGqS3twwE'}]})
+    gfile = drive.CreateFile({'parents': [{'id': '1-qG4ENBg-VNKWfCn6hZvpo8dB6AEe01Y'}]})
     # Read file and set it as the content of this instance.
     gfile.SetContentFile(filename)
     gfile.Upload() # Upload the file.
