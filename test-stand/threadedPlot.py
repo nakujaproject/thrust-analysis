@@ -25,7 +25,7 @@ class MyPlotClass():
 
         self.hLine, = plt.plot(0, 0)
 
-        self.ani = FuncAnimation(plt.gcf(), self.run, interval = 1000, repeat=False)
+        self.ani = FuncAnimation(plt.gcf(), self.run, interval = 2000, repeat=False)
 
 
     def run(self, i):  
@@ -65,6 +65,6 @@ class MyDataFetchClass(threading.Thread):
             #time.sleep(self._nextCall - time.time())
             #time.sleep(self._period)
 
-        np.savetxt(self._filename, allPoints, newline=" ")
+        np.savetxt(self._filename, allPoints, newline="\")
 
 #fetcher.join()
