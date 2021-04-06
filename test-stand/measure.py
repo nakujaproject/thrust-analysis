@@ -16,7 +16,7 @@ import os
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def Calibration(hx):
+def Calibration(hx, offset):
     readings = []
     print("Load Reference weight")
     time.sleep(2)
@@ -30,7 +30,7 @@ def Calibration(hx):
     
     refWeight = float(input("Input reference weight: "))
 
-    return mean(readings)/refWeight
+    return (mean(readings) - offset)/refWeight
 
 filename = datetime.now().strftime("%A %d %B %Y %I-%M%p") + ".csv"
 #f = open(filename, "a")
@@ -44,8 +44,9 @@ hx.setReferenceUnit(1)
 hx.reset()
 hx.tare()
 
+offset = hx.get_weight()
 
-hx.setReferenceUnit(Calibration(hx))
+hx.setReferenceUnit(Calibration(hx, offset)))
 
 #show sample readings
 for _ in range(20):

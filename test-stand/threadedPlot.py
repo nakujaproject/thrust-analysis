@@ -25,13 +25,13 @@ class MyPlotClass():
 
         self.hLine, = plt.plot(0, 0)
 
-        self.ani = FuncAnimation(plt.gcf(), self.run, interval = 500, repeat=False)
+        self.ani = FuncAnimation(plt.gcf(), self.run, interval = 1500, repeat=False)
 
 
     def run(self, i):  
         print("plotting data")
-        self._dataClass.XData = self._dataClass.XData[-160:]
-        self._dataClass.YData = self._dataClass.YData[-160:]
+        #self._dataClass.XData = self._dataClass.XData[-160:]
+        #self._dataClass.YData = self._dataClass.YData[-160:]
         self.hLine.set_data(self._dataClass.XData, self._dataClass.YData)
         self.hLine.axes.relim()
         self.hLine.axes.autoscale_view()
@@ -56,9 +56,9 @@ class MyDataFetchClass(threading.Thread):
             print("updating data")
             #print(dt.datetime.now().strftime('%S.%f'))
             # add data to data class
-            self._dataClass.XData.append(self._dataClass.XData[-1] + 1)
             val = self._hx.getWeight()
             self._dataClass.YData.append(val)
+            self._dataClass.XData.append(self._dataClass.XData[-1] + 1)
             allPoints.append(val)
             # sleep until next execution
             #self._nextCall = self._nextCall + self._period;
