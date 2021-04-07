@@ -44,7 +44,7 @@ hx.setReferenceUnit(1)
 hx.reset()
 hx.tare()
 
-offset = hx.get_weight()
+offset = hx.getWeight()
 
 hx.setReferenceUnit(Calibration(hx, offset))
 
