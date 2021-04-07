@@ -46,7 +46,7 @@ hx.tare()
 
 offset = hx.get_weight()
 
-hx.setReferenceUnit(Calibration(hx, offset)))
+hx.setReferenceUnit(Calibration(hx, offset))
 
 #show sample readings
 for _ in range(20):
