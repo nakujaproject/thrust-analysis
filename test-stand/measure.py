@@ -30,6 +30,7 @@ def Calibration(hx, offset):
     
     refWeight = float(input("Input reference weight: "))
 
+    print((mean(readings) - offset)/refWeight)
     return (mean(readings) - offset)/refWeight
 
 filename = datetime.now().strftime("%A %d %B %Y %I-%M%p") + ".csv"
